@@ -1,229 +1,399 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Apartamento Zona Sul SP</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Jeniffer Corretora</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+
+/* BASE PREMIUM */
+body {
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background:#f8f5f2;
+  opacity:0;
+  animation:fadeIn 1s ease forwards;
 }
 
-body {
-  background: #0f172a;
-  color: white;
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+
+/* HEADER GLASS */
+header {
+  position:fixed;
+  width:100%;
+  background:rgba(90,62,43,0.85);
+  backdrop-filter:blur(12px);
+  color:#fff;
+  padding:15px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+/* LOGO */
+.logo {
+  position:absolute;
+  left:20px;
+}
+
+.logo-box {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon {
+  width:40px;
+  height:40px;
+  background:linear-gradient(135deg,#a67c52,#d6c1a3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.name { font-size:18px; font-weight:bold; }
+.sub { font-size:12px; color:#d6c1a3; }
+
+/* MENU */
+.menu {
+  display:flex;
+  gap:30px;
+}
+
+.menu a {
+  color:#fff;
+  text-decoration:none;
+  position:relative;
+  transition:0.3s;
+}
+
+.menu a:hover {
+  opacity:0.8;
+}
+
+/* LINHA SUAVE */
+.menu a::after {
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  bottom:-5px;
+  left:0;
+  background:linear-gradient(90deg,#fff,transparent);
+  transition:0.4s ease;
+}
+
+.menu a:hover::after {
+  width:100%;
 }
 
 /* HERO */
 .hero {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-/* CARROSSEL */
-.carousel {
-  display: flex;
-  height: 100%;
-  transition: transform 0.8s ease;
-}
-
-.slide {
-  min-width: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-/* OVERLAY */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(0,0,0,0.5);
-  width: 100%;
-  height: 100%;
-}
-
-/* TEXTO HERO */
-.hero-content {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  text-align:center;
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size:42px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(6px);
+  padding:25px;
+  border-radius:12px;
+  letter-spacing:1px;
 }
 
-.hero p {
-  margin: 15px 0;
+/* SECTIONS */
+.section {
+  padding:90px 20px;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s cubic-bezier(.22,.61,.36,1);
 }
 
+.section.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2 {
+  text-align:center;
+  color:#5a3e2b;
+  margin-bottom:40px;
+}
+
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+
+/* CARDS PREMIUM */
+.card {
+  position:relative;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  transition:all .5s cubic-bezier(.22,.61,.36,1);
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* BRILHO PASSANDO */
+.card::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+  transition:0.8s;
+}
+
+.card:hover::before {
+  left:100%;
+}
+
+/* HOVER LUXO */
+.card:hover {
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* IMAGEM */
+.card img {
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  transition:0.5s;
+}
+
+.card:hover img {
+  transform:scale(1.08);
+}
+
+/* CONTEUDO */
+.card-content {
+  padding:18px;
+}
+
+/* BOTÃO PREMIUM */
 .btn {
-  background: linear-gradient(135deg, #00c896, #00a86b);
-  padding: 15px 30px;
-  border-radius: 50px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  display: inline-block;
-  transition: 0.3s;
+  display:inline-block;
+  padding:12px 18px;
+  background:linear-gradient(135deg,#5a3e2b,#a67c52);
+  color:#fff;
+  margin-top:12px;
+  cursor:pointer;
+  border-radius:8px;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 .btn:hover {
-  transform: scale(1.05);
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* SEÇÕES */
-.section {
-  padding: 70px 20px;
-  max-width: 1100px;
-  margin: auto;
+/* DESTAQUE */
+.highlight {
+  background:linear-gradient(135deg,#5a3e2b,#a67c52);
+  color:#fff;
+  text-align:center;
+  padding:70px 20px;
+  font-size:20px;
 }
 
-/* BENEFÍCIOS */
-.cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.card {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 15px;
-  flex: 1;
+/* DEPOIMENTOS */
+.testimonial {
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  transition:0.3s;
 }
 
-/* REELS */
-.reels {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-.reel {
-  min-width: 300px;
-  scroll-snap-align: start;
+.testimonial:hover {
+  transform:translateY(-5px);
 }
 
-/* WHATSAPP FIXO */
+/* CTA */
+.cta {
+  background:#a67c52;
+  color:#fff;
+  text-align:center;
+  padding:70px 20px;
+}
+
+.cta button {
+  padding:15px 35px;
+  border:none;
+  background:#fff;
+  color:#5a3e2b;
+  font-weight:bold;
+  cursor:pointer;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.cta button:hover {
+  transform:scale(1.05);
+}
+
+/* WHATS */
 .whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  padding: 15px;
-  border-radius: 50%;
-  font-size: 22px;
-  text-decoration: none;
-  color: white;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:18px;
+  border-radius:50%;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  transition:0.3s;
 }
 
-/* URGÊNCIA */
-.badge {
-  background: red;
-  padding: 8px 15px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 10px;
+.whatsapp:hover {
+  transform:scale(1.1);
 }
+
+/* FOOTER */
+footer {
+  background:#5a3e2b;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HERO COM CARROSSEL -->
+<header>
+
+<div class="logo">
+  <div class="logo-box">
+    <div class="icon">J</div>
+    <div>
+      <div class="name">Jeniffer</div>
+      <div class="sub">Imóveis</div>
+    </div>
+  </div>
+</div>
+
+<div class="menu">
+  <a href="#">Início</a>
+  <a href="#">Imóveis</a>
+  <a href="#">Contato</a>
+</div>
+
+</header>
+
 <div class="hero">
-  <div class="carousel" id="carousel">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1501183638710-841dd1904471')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1560184897-ae75f418493e')"></div>
-  </div>
-
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <div class="badge">🔥 Últimas unidades</div>
-    <h1>Apartamento na Zona Sul de SP</h1>
-    <p>Entrada facilitada + financiamento rápido</p>
-    <br>
-    <a href="https://wa.me/SEUNUMERO" class="btn">Quero mais informações</a>
-  </div>
+<h1>Apartamentos exclusivos e sofisticados</h1>
 </div>
 
-<!-- BENEFÍCIOS -->
 <div class="section">
-  <h2>Por que escolher esse imóvel?</h2>
-  <br><br>
+<h2>Imóveis em Destaque</h2>
 
-  <div class="cards">
-    <div class="card">📍 Localização privilegiada</div>
-    <div class="card">🔐 Segurança 24h</div>
-    <div class="card">💰 Alta valorização</div>
-  </div>
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2">
+<div class="card-content">
+<h3>4 Quartos • Frente Mar</h3>
+<p>Balneário Camboriú</p>
+<strong>R$ 3.200.000</strong><br>
+<div class="btn">Ver detalhes</div>
+</div>
 </div>
 
-<!-- REELS -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c">
+<div class="card-content">
+<h3>3 Quartos • Alto padrão</h3>
+<p>Praia Brava</p>
+<strong>R$ 2.100.000</strong><br>
+<div class="btn">Ver detalhes</div>
+</div>
+</div>
+
+</div>
+</div>
+
 <div class="section">
-  <h2>Veja o imóvel em vídeo</h2>
-  <br>
+<h2>Lançamentos</h2>
 
-  <div class="reels">
-    
-    <div class="reel">
-      <iframe src="https://www.instagram.com/p/DUJkb8cCR5Q/" width="300" height="500"></iframe>
-    </div>
-
-    <div class="reel">
-      <iframe src="https://www.instagram.com/p/DVJjrNLDgwP/" width="300" height="500"></iframe>
-    </div>
-
-    <div class="reel">
-      <iframe src="https://www.instagram.com/p/DVPF8eEjtJh/" width="300" height="500"></iframe>
-    </div>
-
-  </div>
+<div class="grid">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+<div class="card-content">
+<h3>Lançamento Premium</h3>
+<p>Entrega 2027</p>
+<strong>A partir de R$ 1.500.000</strong>
+</div>
+</div>
 </div>
 
-<!-- DETALHES -->
+</div>
+
+<div class="highlight">
+Mais de 10 anos conectando clientes ao imóvel ideal
+</div>
+
 <div class="section">
-  <h2>Detalhes</h2>
-  <br>
-  <p>• 2 dormitórios</p>
-  <p>• 1 vaga</p>
-  <p>• Lazer completo</p>
+<h2>Depoimentos</h2>
+
+<div class="grid">
+<div class="testimonial">
+<p>"Atendimento impecável"</p>
+<strong>Cliente</strong>
 </div>
 
-<!-- CTA FINAL -->
-<div class="section" style="text-align:center;">
-  <h2>Agende sua visita agora</h2>
-  <br>
-  <a href="https://wa.me/SEUNUMERO" class="btn">Falar no WhatsApp</a>
+<div class="testimonial">
+<p>"Experiência de alto padrão"</p>
+<strong>Cliente</strong>
+</div>
 </div>
 
-<!-- BOTÃO FIXO -->
-<a href="https://wa.me/SEUNUMERO" class="whatsapp">💬</a>
+</div>
+
+<div class="cta">
+<h2>Quer vender ou comprar?</h2>
+<p>Fale agora com um especialista</p>
+<button>Chamar no WhatsApp</button>
+</div>
+
+<footer>
+© 2026 Jeniffer Corretora
+</footer>
+
+<div class="whatsapp">W</div>
 
 <script>
-// CARROSSEL AUTOMÁTICO
-let index = 0;
-const carousel = document.getElementById("carousel");
+const sections = document.querySelectorAll('.section');
 
-setInterval(() => {
-  index++;
-  if(index > 2) index = 0;
-  carousel.style.transform = `translateX(-${index * 100}%)`;
-}, 4000);
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add('show');
+    }
+  });
+});
 </script>
 
 </body>
